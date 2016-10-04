@@ -1,0 +1,34 @@
+{
+  "function": "onThngPropertiesChanged",
+  "event": {
+    "thng": {
+      "id": "UYppTyySww8aWYxUAMXkXt8d",
+      "createdAt": 1443085173787,
+      "customFields": {},
+      "tags": ["reactor", "test"],
+      "scopes": {
+        "users": ["all"],
+        "projects": ["Uh5qRBqc4DcmbNbAANtMnrYm"]
+      },
+      "updatedAt": 1443086977720,
+      "name": "Test Thng",
+      "description": "Thng created to test the reactor script locally",
+      "location": null,
+      "product": "UhrGbTtGmDSTKHbwqsrcNtxt",
+      "properties": {
+        "enable": false,
+        "temperature": 21
+      },
+      "identifiers2": {},
+      "collections": null,
+      "batch": null
+    },
+    "changes": {
+      "temperature": {
+        "oldValue": 23,
+        "newValue": 21,
+        "timestamp": 1443086977716
+      }
+    }
+  }
+}
