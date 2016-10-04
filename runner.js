@@ -5,11 +5,11 @@ var EVT = require('evrythng-extended');
 var OPERATOR_API_KEY = '';
 
 /* Uncomment one of the following to choose the example event
- * that will be received by main.js when the test is run.
+ * that will be received by script.js when the test is run.
  * You can also choose a path to any other example events you have created.
  */
+var event = require('./example-events/onThngPropertiesChanged.json');
 // var event = require('./example-events/onActionCreated.json');
-// var event = require('./example-events/onThngPropertiesChanged.json');
 // var event = require('./example-events/onProductPropertiesChanged.json');
 // ----------------------- DO NOT MODIFY BELOW THIS LINE ----------------------
 
@@ -38,7 +38,7 @@ global.done = done;
 global.logger = logger;
 
 try {
-  var reactor = require('./main.js');
+  var reactor = require('./script.js');
   if (reactor[event.function]) {
     reactor[event.function](event.event);
   } else {

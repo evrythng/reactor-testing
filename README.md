@@ -11,7 +11,7 @@ can receive.
 
 2. `$ cd reactor-testing`
 
-3. Replace `main.js` with the Reactor script to be tested.
+3. Insert your Reactor script into the corresponding section of `script.js`.
 
 4. Insert your Operator API key in `runner.js` as the value of 
    `OPERATOR_API_KEY`.
