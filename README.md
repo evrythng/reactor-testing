@@ -4,6 +4,9 @@ This repository allows you to test your EVRYTHNG Reactor scripts on your local
 machine, and simulates one of the possible types of events that a Reactor script
 can receive.
 
+See [_Reactor_](https://developers.evrythng.com/docs/reactor) in the EVRYTHNG
+documentation to learn more about Reactor.
+
 
 ## How to use
 
@@ -20,4 +23,4 @@ can receive.
    object at the top of `runner.js`. This file must contain valid values for the 
   various entity IDs involved.
 
-6. `$ node runner.js`
+6. `$ npm install && node runner.js`
