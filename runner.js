@@ -1,17 +1,7 @@
-
 var EVT = require('evrythng-extended');
-
-// -------------------------- MODIFY YOUR SETUP HERE --------------------------
-var OPERATOR_API_KEY = '';
-
-/* Uncomment one of the following to choose the example event
- * that will be received by script.js when the test is run.
- * You can also choose a path to any other example events you have created.
- */
-var event = require('./example-events/onThngPropertiesChanged.json');
-// var event = require('./example-events/onActionCreated.json');
-// var event = require('./example-events/onProductPropertiesChanged.json');
-// ----------------------- DO NOT MODIFY BELOW THIS LINE ----------------------
+var config = require('./config.json');
+var script = require(config.script);
+var event = require(config.event);
 
 function getLogger(level) {
   return function(msg) {
@@ -28,22 +18,22 @@ var logger = {
 };
 
 function done() {
-  logger.debug('Reporting logs to EVRYTHNG...');
   logger.debug('Script finished!');
 }
 
 global.EVT = EVT;
-global.app = new EVT.Operator(OPERATOR_API_KEY);
-global.done = done;
 global.logger = logger;
 
-try {
-  var reactor = require('./script.js');
-  if (reactor[event.function]) {
-    reactor[event.function](event.event);
-  } else {
-    console.log('There are no event functions in the reactor script to execute.');
+var app = new EVT.App(config.apiKey);
+app.$init.then(app => {
+  global.app = app;
+  try {
+    if (script[event.function]) {
+      script[event.function](event.event);
+    } else {
+      console.log('There are no event functions in the reactor script to execute. Have they been exported to module.exports?');
+    }
+  } catch(err) {
+    logger.error('Could not execute reactor script');
   }
-} catch (e) {
-  logger.error('Could not execute reactor script: ' + e.message);
-}
+}).catch(e => console.error(e));
