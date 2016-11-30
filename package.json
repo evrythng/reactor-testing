@@ -1,11 +1,8 @@
 {
   "name": "reactor-tesing",
   "version": "1.0.0",
-  "description": "Testing script for EVRYTHNG reactor",
+  "description": "Testing evironment for testing an EVRYTHNG Reactor script",
   "main": "runner.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "author": "EVRYTHNG",
   "license": "ISC",
   "dependencies": {
