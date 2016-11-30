@@ -10,17 +10,12 @@ documentation to learn more about Reactor.
 
 ## How to use
 
-1. `$ git clone https://github.com/evrythng/reactor-testing`
+1. `$ git clone https://github.com/evrythng/reactor-testing && cd reactor-testing`
 
-2. `$ cd reactor-testing`
+2. Set up `config.json` according to your needs:
 
-3. Insert your Reactor script into the corresponding section of `script.js`.
+    - `apiKey` - The Application API key.
+    - `event` - Relative location of the JSON file describing the event to simulate.
+    - `script` - Relative location of the Reactor script to be tested.
 
-4. Insert your Operator API key in `runner.js` as the value of 
-   `OPERATOR_API_KEY`.
-
-5. Choose the type of event to simulate, and the file to be used as that event
-   object at the top of `runner.js`. This file must contain valid values for the 
-  various entity IDs involved.
-
-6. `$ npm install && node runner.js`
+3. `$ npm install && node runner.js`
