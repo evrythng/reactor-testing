@@ -36,4 +36,4 @@ app.$init.then(app => {
   } catch(err) {
     logger.error('Could not execute reactor script');
   }
-}).catch(e => console.error(e));
+}).catch(e => console.error(e)).then(done);
