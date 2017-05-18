@@ -35,7 +35,7 @@ documentation to learn more about Reactor.
 
 ## Important Note
 
-Make sure your callback returns a Promise and exports event callbacks. For 
+For this implementation, make sure your callback returns a Promise and exports event callbacks. For 
 example: 
 
 ```
@@ -48,3 +48,6 @@ function onScheduledEvent(event) {
 
 module.exports.onScheduledEvent = onScheduledEvent;
 ```
+
+In the current EVRYTHNG Platform Reactor, the callback must ensure `done` is
+called.
