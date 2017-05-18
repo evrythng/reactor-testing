@@ -2,7 +2,9 @@
   "name": "reactor-tesing",
   "version": "1.0.0",
   "description": "Testing evironment for testing an EVRYTHNG Reactor script",
-  "main": "runner.js",
+  "scripts": {
+    "start": "node runner.js"
+  },
   "author": "EVRYTHNG",
   "license": "ISC",
   "dependencies": {

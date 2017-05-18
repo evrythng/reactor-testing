@@ -12,7 +12,7 @@ documentation to learn more about Reactor.
 
 1. `$ git clone https://github.com/evrythng/reactor-testing && cd reactor-testing`
 
-2. Set up `config.json` according to your needs:
+2. Set up a `config.json` according to your needs:
 
     - `apiKey` - The Trusted App API key.
     - `event` - Relative location of the JSON file describing the event to 
@@ -30,12 +30,13 @@ documentation to learn more about Reactor.
     - `script` - Relative location of the Reactor script to be tested, 
       including the `function` in the file specified by `event`.
 
-3. `$ npm install && node runner.js`
+3. `$ npm install && npm start`
 
 
 ## Important Note
 
-Make sure your callback returns a Promise! For example: 
+Make sure your callback returns a Promise and exports event callbacks. For 
+example: 
 
 ```
 function onScheduledEvent(event) {
