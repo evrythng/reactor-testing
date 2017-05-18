@@ -1,5 +1,0 @@
-{
-  "apiKey": "",
-  "event": "./example-events/onActionCreated.json",
-  "script": "./script.js"
-}
