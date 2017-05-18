@@ -29,11 +29,15 @@ app.$init.then(app => {
   global.app = app;
   try {
     if (script[event.function]) {
-      script[event.function](event.event);
+      script[event.function](event.event).then(done).catch(console.error);
     } else {
       console.log('There are no event functions in the reactor script to execute. Have they been exported to module.exports?');
     }
   } catch(err) {
     logger.error('Could not execute reactor script');
   }
-}).catch(e => console.error(e)).then(done);
+}).catch(console.error);
+
+process.on('unhandledRejection', function(err) {
+  console.log('! unhandled rejection: ' + (err.message ? err.message : JSON.stringify(err)));
+});
