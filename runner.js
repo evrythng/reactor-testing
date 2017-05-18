@@ -23,13 +23,14 @@ function done() {
 
 global.EVT = EVT;
 global.logger = logger;
+global.done = done;
 
-var app = new EVT.App(config.apiKey);
+var app = new EVT.App(config.trustedAppApiKey);
 app.$init.then(app => {
   global.app = app;
   try {
     if (script[event.function]) {
-      script[event.function](event.event).then(done).catch(console.error);
+      script[event.function](event.event).catch(console.error);
     } else {
       console.log('There are no event functions in the reactor script to execute. Have they been exported to module.exports?');
     }

@@ -31,23 +31,3 @@ documentation to learn more about Reactor.
       including the `function` in the file specified by `event`.
 
 3. `$ npm install && npm start`
-
-
-## Important Note
-
-For this implementation, make sure your callback returns a Promise and exports event callbacks. For 
-example: 
-
-```
-function onScheduledEvent(event) {
-  return new Promise((resolve, reject) => {
-    logger.info('Running callback!');
-    resolve();
-  });
-} 
-
-module.exports.onScheduledEvent = onScheduledEvent;
-```
-
-In the current EVRYTHNG Platform Reactor, the callback must ensure `done` is
-called.

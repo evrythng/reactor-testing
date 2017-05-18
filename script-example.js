@@ -5,14 +5,17 @@
 
 function onActionCreated(event) {
   logger.info('onActionCreated() in the example testing script!');
+  done();
 }
 
 function onThngPropertiesChanged(event) {
   logger.info('onThngPropertiesChanged() in the example testing script!');
+  done();
 }
 
 function onProductPropertiesChanged(event) {
   logger.info('onProductPropertiesChanged() in the example testing script!');
+  done();
 }
 
 
