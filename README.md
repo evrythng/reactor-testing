@@ -14,8 +14,36 @@ documentation to learn more about Reactor.
 
 2. Set up `config.json` according to your needs:
 
-    - `apiKey` - The Application API key.
-    - `event` - Relative location of the JSON file describing the event to simulate.
-    - `script` - Relative location of the Reactor script to be tested.
+    - `apiKey` - The Trusted App API key.
+    - `event` - Relative location of the JSON file describing the event to 
+      simulate. For example:
+
+      ```
+      {
+        "function": "onScheduledEvent",
+        "event": {
+          "foo": "bar"
+        }
+      }
+      ```
+
+    - `script` - Relative location of the Reactor script to be tested, 
+      including the `function` in the file specified by `event`.
 
 3. `$ npm install && node runner.js`
+
+
+## Important Note
+
+Make sure your callback returns a Promise! For example: 
+
+```
+function onScheduledEvent(event) {
+  return new Promise((resolve, reject) => {
+    logger.info('Running callback!');
+    resolve();
+  });
+} 
+
+module.exports.onScheduledEvent = onScheduledEvent;
+```
