@@ -8,7 +8,7 @@ See [_Reactor_](https://developers.evrythng.com/docs/reactor) in the EVRYTHNG
 documentation to learn more about Reactor.
 
 
-## How to use
+## How to use
 
 1. `$ git clone https://github.com/evrythng/reactor-testing && cd reactor-testing`
 
