@@ -21,6 +21,10 @@ function done() {
   logger.debug('Script finished!');
 }
 
+function stringifyErr(err) {
+  return (err.message ? err.message : JSON.stringify(err));
+}
+
 global.EVT = EVT;
 global.logger = logger;
 global.done = done;
@@ -30,15 +34,15 @@ app.$init.then(app => {
   global.app = app;
   try {
     if (script[event.function]) {
-      script[event.function](event.event).catch(console.error);
+      script[event.function](event.event);
     } else {
       console.log('There are no event functions in the reactor script to execute. Have they been exported to module.exports?');
     }
   } catch(err) {
-    logger.error('Could not execute reactor script');
+    logger.error('Could not execute reactor script: ' + stringifyErr(err));
   }
 }).catch(console.error);
 
 process.on('unhandledRejection', function(err) {
-  console.log('! unhandled rejection: ' + (err.message ? err.message : JSON.stringify(err)));
+  console.log('! unhandled rejection: ' + stringifyErr(err));
 });
