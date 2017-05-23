@@ -1,16 +1,16 @@
-var EVT = require('evrythng-extended');
-var config = require('./config.json');
-var script = require(config.script);
-var event = require(config.event);
+const EVT = require('evrythng-extended');
+const config = require('./config.json');
+const script = require(config.script);
+const event = require(config.event);
 
 function getLogger(level) {
   return function(msg) {
-    var datetime = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-    console.log(datetime + ' [' + level + '\t]: ' + msg);
+    const datetime = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+    console.log(`${datetime} [${level}\t]: ${((typeof msg === 'object') ? JSON.stringify(msg) : msg)}`);
   }
 }
 
-var logger = {
+const logger = {
   debug: getLogger('debug'),
   info: getLogger('info'),
   warn: getLogger('warn'),
@@ -22,16 +22,15 @@ function done() {
 }
 
 function stringifyErr(err) {
-  return (err.message ? err.message : JSON.stringify(err));
+  return `${(err.message ? err.message : JSON.stringify(err))} ${err.stack}`;
 }
 
 global.EVT = EVT;
 global.logger = logger;
 global.done = done;
 
-var app = new EVT.App(config.trustedAppApiKey);
-app.$init.then(app => {
-  global.app = app;
+const app = new EVT.App(config.trustedAppApiKey).$init.then(authApplication => {
+  global.app = authApplication;
   try {
     if (script[event.function]) {
       script[event.function](event.event);
@@ -44,5 +43,5 @@ app.$init.then(app => {
 }).catch(console.error);
 
 process.on('unhandledRejection', function(err) {
-  console.log('! unhandled rejection: ' + stringifyErr(err));
+  console.log(`! unhandled rejection: ${stringifyErr(err)}`);
 });
