@@ -1,5 +1,6 @@
 {
   "trustedAppApiKey": "",
+  "apiUrl": "https://api.evrythng.com",
   "event": "./example-events/onActionCreated.json",
   "script": "./script-example.js"
 }
