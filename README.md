@@ -14,7 +14,8 @@ documentation to learn more about Reactor.
 
 2. Set up a `config.json` according to your needs:
 
-    - `apiKey` - The Trusted App API key.
+    - `trustedAppApiKey` - The Trusted App API key.
+    - `apiUrl` - The environment API URL.
     - `event` - Relative location of the JSON file describing the event to 
       simulate. For example:
 
