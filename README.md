@@ -16,19 +16,16 @@ documentation to learn more about Reactor.
 
     - `trustedAppApiKey` - The Trusted App API key.
     - `apiUrl` - The environment API URL.
-    - `event` - Relative location of the JSON file describing the event to 
-      simulate. For example:
+    - `event` - The parameter passed to the script function. For example:
 
       ```
-      {
-        "function": "onScheduledEvent",
-        "event": {
-          "foo": "bar"
-        }
+      "event": {
+        "thng": ...,
+        "changes": ...
       }
       ```
 
-    - `script` - Relative location of the Reactor script to be tested, 
-      including the `function` in the file specified by `event`.
+    - `function` - The type of function to simulate. For example, 
+      `onActionCreated`.
 
 3. `$ npm install && npm start`
