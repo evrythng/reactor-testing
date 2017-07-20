@@ -1,6 +1,9 @@
 {
   "trustedAppApiKey": "",
   "apiUrl": "https://api.evrythng.com",
-  "event": "./example-events/onActionCreated.json",
-  "script": "./script-example.js"
+  "script": "./script-example.js",
+  "function": "onScheduledEvent",
+  "event": {
+    "foo": "bar"
+  }
 }

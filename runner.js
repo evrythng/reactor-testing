@@ -1,7 +1,7 @@
 const EVT = require('evrythng-extended');
 const config = require('./config.json');
 const script = require(config.script);
-const event = require(config.event);
+const event = config.event;
 
 EVT.setup({
   apiUrl: config.apiUrl
@@ -36,16 +36,14 @@ global.done = done;
 const app = new EVT.App(config.trustedAppApiKey).$init.then(authApplication => {
   global.app = authApplication;
   try {
-    if(script[event.function]) {
-      script[event.function](event.event);
+    if(script[config.function]) {
+      script[config.function](config.event);
     } else {
-      console.log('There are no event functions in the reactor script to execute. Have they been exported to module.exports?');
+      console.log('The event functionwas not found. Has it been exported to module.exports?');
     }
   } catch(err) {
     logger.error(`Could not execute reactor script: ${stringifyErr(err)}`);
   }
 }).catch(console.error);
 
-process.on('unhandledRejection', (err) => {
-  console.log(`! unhandled rejection: ${stringifyErr(err)}`);
-});
+process.on('unhandledRejection', (err) => console.log(`! unhandled rejection: ${stringifyErr(err)}`));

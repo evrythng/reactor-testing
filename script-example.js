@@ -18,7 +18,14 @@ function onProductPropertiesChanged(event) {
   done();
 }
 
+function onScheduledEvent(event) {
+  logger.info('onScheduledEvent() in the example testing script!');
+  done();
+}
 
-exports.onActionCreated = onActionCreated;
-exports.onThngPropertiesChanged = onThngPropertiesChanged;
-exports.onProductPropertiesChanged = onProductPropertiesChanged;
+
+module.exports = {
+  onActionCreated: onActionCreated,
+  onThngPropertiesChanged: onThngPropertiesChanged,
+  onProductPropertiesChanged: onProductPropertiesChanged
+};
