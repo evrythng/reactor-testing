@@ -7,18 +7,16 @@ EVT.setup({
   apiUrl: config.apiUrl
 });
 
-function getLogger(level) {
-  return (msg) => {
-    const datetime = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-    console.log(`${datetime} [${level}\t]: ${((typeof msg === 'object') ? JSON.stringify(msg) : msg)}`);
-  }
+function log(level, msg) {
+  const datetime = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
+  console.log(`${datetime} [${level}\t]: ${((typeof msg === 'object') ? JSON.stringify(msg) : msg)}`);
 }
 
 const logger = {
-  debug: getLogger('debug'),
-  info: getLogger('info'),
-  warn: getLogger('warn'),
-  error: getLogger('error')
+  debug: (msg) => log('debug', msg),
+  info: (msg) => log('info', msg),
+  warn: (msg) => log('warn', msg),
+  error: (msg) => log('error', msg)
 };
 
 function done() {
@@ -33,17 +31,15 @@ global.EVT = EVT;
 global.logger = logger;
 global.done = done;
 
-const app = new EVT.App(config.trustedAppApiKey).$init.then(authApplication => {
+const app = new EVT.App(config.trustedAppApiKey).$init.then((authApplication) => {
   global.app = authApplication;
   try {
-    if(script[config.function]) {
-      script[config.function](config.event);
-    } else {
-      console.log('The event functionwas not found. Has it been exported to module.exports?');
-    }
+    if(script[config.function]) script[config.function](config.event);
+    else console.log(`The event function '${config.function}' was not found in script '${config.script}'. Has it been exported to module.exports?`);
   } catch(err) {
     logger.error(`Could not execute reactor script: ${stringifyErr(err)}`);
   }
 }).catch(console.error);
 
-process.on('unhandledRejection', (err) => console.log(`! unhandled rejection: ${stringifyErr(err)}`));
+process.on('unhandledRejection', (err) => console.log(`Unhandled rejection: ${stringifyErr(err)}`));
+process.on('uncaughtException',  (err) => console.log(`Uncaught exception: ${stringifyErr(err)}`));

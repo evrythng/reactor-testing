@@ -27,5 +27,6 @@ function onScheduledEvent(event) {
 module.exports = {
   onActionCreated: onActionCreated,
   onThngPropertiesChanged: onThngPropertiesChanged,
-  onProductPropertiesChanged: onProductPropertiesChanged
+  onProductPropertiesChanged: onProductPropertiesChanged,
+  onScheduledEvent: onScheduledEvent
 };
