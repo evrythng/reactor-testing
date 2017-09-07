@@ -9,7 +9,7 @@ EVT.setup({
 
 function log(level, msg) {
   const datetime = new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '');
-  console.log(`${datetime} [${level}\t]: ${((typeof msg === 'object') ? JSON.stringify(msg) : msg)}`);
+  console.log(`${datetime} [${level}\t]: ${((typeof msg === 'object') ? stringifyErr(msg) : msg)}`);
 }
 
 const logger = {
@@ -24,14 +24,14 @@ function done() {
 }
 
 function stringifyErr(err) {
-  return `${(err.message ? err.message : JSON.stringify(err))} ${err.stack}`;
+  return `Error: ${(err.message ? err.message : JSON.stringify(err))} ${err.stack}`;
 }
 
 global.EVT = EVT;
 global.logger = logger;
 global.done = done;
 
-const app = new EVT.App(config.trustedAppApiKey).$init.then((authApplication) => {
+const app = new EVT.TrustedApp(config.trustedAppApiKey).$init.then((authApplication) => {
   global.app = authApplication;
   try {
     if(script[config.function]) script[config.function](config.event);
@@ -39,7 +39,7 @@ const app = new EVT.App(config.trustedAppApiKey).$init.then((authApplication) =>
   } catch(err) {
     logger.error(`Could not execute reactor script: ${stringifyErr(err)}`);
   }
-}).catch(console.error);
+}).catch(stringifyErr);
 
 process.on('unhandledRejection', (err) => console.log(`Unhandled rejection: ${stringifyErr(err)}`));
 process.on('uncaughtException',  (err) => console.log(`Uncaught exception: ${stringifyErr(err)}`));
