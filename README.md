@@ -27,5 +27,7 @@ documentation to learn more about Reactor.
 
     - `function` - The type of function to simulate. For example, 
       `onActionCreated`.
+    - `realistic` - Be as realistic as possible, with log only shown when 
+      `done()` is called, and less error handling.
 
 3. `$ npm install && npm start`

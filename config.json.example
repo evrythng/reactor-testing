@@ -5,5 +5,6 @@
   "function": "onScheduledEvent",
   "event": {
     "foo": "bar"
-  }
+  },
+  "realistic": false
 }
