@@ -33,19 +33,15 @@ function stringifyErr(err) {
     apiUrl: config.apiUrl
   });
 
-  const app = new EVT.TrustedApp(config.trustedAppApiKey).$init.then((authApplication) => {
-    global.app = authApplication;
-    try {
-      const script = require(config.script);
-      if(script[config.function]) script[config.function](config.event);
-      else console.log(`The event function '${config.function}' was not found in script '${config.script}'. ` + 
-                       `Has it been exported to module.exports?`);
-    } catch(err) {
-      if(config.realistic) console.log(`Could not execute reactor script: ${stringifyErr(err)}`);
-    }
-  }).catch((err) => {
-    if(config.realistic) stringifyErr(err);
-  });
+  global.app = new EVT.TrustedApp(config.trustedAppApiKey);
+  try {
+    const script = require(config.script);
+    if(script[config.function]) script[config.function](config.event);
+    else console.log(`The event function '${config.function}' was not found in script '${config.script}'. ` + 
+                     `Has it been exported to module.exports?`);
+  } catch(err) {
+    if(config.realistic) console.log(`Could not execute reactor script: ${stringifyErr(err)}`);
+  }
 
   if(config.realistic) {
     process.on('unhandledRejection', (err) => console.log(`Unhandled rejection: ${stringifyErr(err)}`));
