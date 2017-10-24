@@ -40,10 +40,10 @@ function stringifyErr(err) {
     else console.log(`The event function '${config.function}' was not found in script '${config.script}'. ` + 
                      `Has it been exported to module.exports?`);
   } catch(err) {
-    if(config.realistic) console.log(`Could not execute reactor script: ${stringifyErr(err)}`);
+    if(!config.realistic) console.log(`Could not execute reactor script: ${stringifyErr(err)}`);
   }
 
-  if(config.realistic) {
+  if(!config.realistic) {
     process.on('unhandledRejection', (err) => console.log(`Unhandled rejection: ${stringifyErr(err)}`));
     process.on('uncaughtException',  (err) => console.log(`Uncaught exception: ${stringifyErr(err)}`));
   }
