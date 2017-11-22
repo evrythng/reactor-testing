@@ -6,5 +6,6 @@
   "event": {
     "foo": "bar"
   },
-  "realistic": false
+  "realistic": false,
+  "showRequests": true
 }

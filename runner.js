@@ -1,6 +1,17 @@
 const EVT = require('evrythng-extended');
 const config = require('./config.json');
 
+const INTERCEPTORS = [{
+  request: (options) => {
+    console.log(`request: ${JSON.stringify(options, null, 2)}`);
+    return options;
+  },
+  response: (result) => {
+    console.log(`result: ${JSON.stringify(result, null, 2)}`);
+    return result;
+  }
+}];
+
 const logs = [];
 
 global.EVT = EVT;
@@ -29,8 +40,9 @@ function stringifyErr(err) {
 }
 
 (() => {
-  EVT.setup({
-    apiUrl: config.apiUrl
+  EVT.setup({ 
+    apiUrl: config.apiUrl,
+    interceptors: (config.showRequests && !config.realistic) ? INTERCEPTORS : []
   });
 
   global.app = new EVT.TrustedApp(config.trustedAppApiKey);

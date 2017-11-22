@@ -29,5 +29,7 @@ documentation to learn more about Reactor.
       `onActionCreated`.
     - `realistic` - Be as realistic as possible, with log only shown when 
       `done()` is called, and less error handling.
+    - `showRequests` - Print all requests and responses made by the 
+      `evrythng-extended` SDK. Requires `realistic: false`.
 
 3. `$ npm install && npm start`
