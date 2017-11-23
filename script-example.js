@@ -4,29 +4,28 @@
  */
 
 function onActionCreated(event) {
-  logger.info('onActionCreated() in the example testing script!');
+  logger.info(`onActionCreated\n${JSON.stringify(event)}`);
   done();
 }
 
 function onThngPropertiesChanged(event) {
-  logger.info('onThngPropertiesChanged() in the example testing script!');
+  logger.info(`onThngPropertiesChanged\n${JSON.stringify(event)}`);
   done();
 }
 
 function onProductPropertiesChanged(event) {
-  logger.info('onProductPropertiesChanged() in the example testing script!');
+  logger.info(`onProductPropertiesChanged\n${JSON.stringify(event)}`);
   done();
 }
 
 function onScheduledEvent(event) {
-  logger.info('onScheduledEvent() in the example testing script!');
+  logger.info(`onScheduledEvent\n${JSON.stringify(event)}`);
   done();
 }
 
-
 module.exports = {
-  onActionCreated: onActionCreated,
-  onThngPropertiesChanged: onThngPropertiesChanged,
-  onProductPropertiesChanged: onProductPropertiesChanged,
-  onScheduledEvent: onScheduledEvent
+  onActionCreated,
+  onThngPropertiesChanged,
+  onProductPropertiesChanged,
+  onScheduledEvent
 };
