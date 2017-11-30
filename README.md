@@ -7,6 +7,11 @@ can receive.
 See [_Reactor_](https://developers.evrythng.com/docs/reactor) in the EVRYTHNG
 documentation to learn more about Reactor.
 
+To test a single-file script, simply place it in `main.js` and check the 
+`script` path in `config.json` is correct (for example, `./main.js`). To test a 
+bundle script, use a local folder `bundle`, and set the `script` path to 
+`./bundle/main.js`.
+
 
 ## How to use
 
@@ -15,6 +20,7 @@ documentation to learn more about Reactor.
 2. Set up a `config.json` according to your needs:
 
     - `trustedAppApiKey` - The Trusted App API key.
+    - `script` - Path to the main script file that contains the callbacks.
     - `apiUrl` - The environment API URL.
     - `event` - The parameter passed to the script function. For example:
 
