@@ -1,5 +1,10 @@
 # reactor-testing
 
+> Using `evrythng-cli`? You can use this functionality in a streamlined format
+> with the 
+> [`evrythng-cli-plugin-reactor-test`](https://github.com/evrythng/evrythng-cli-plugin-reactor-test)
+> plugin.
+
 This repository allows you to test your EVRYTHNG Reactor scripts on your local
 machine, and simulates one of the possible types of events that a Reactor script
 can receive.
